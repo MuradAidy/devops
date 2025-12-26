@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <body>
+    <h1>Restaurant Recommendation</h1>
+    <input id="meal" placeholder="pizza / shawarma / burger" />
+    <button onclick="go()">Recommend</button>
+    <pre id="out"></pre>
+
+    <script>
+      async function go() {
+        const meal = document.getElementById("meal").value.trim().toLowerCase();
+        document.getElementById("out").textContent = "Loading...";
+        const r = await fetch(`/api/recommend?meal=${meal}`);
+        const t = await r.text();
+        document.getElementById("out").textContent = t;
+      }
+    </script>
+  </body>
+</html>
